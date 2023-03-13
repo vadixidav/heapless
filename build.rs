@@ -19,6 +19,8 @@ fn main() -> Result<(), Box<dyn Error>> {
         println!("cargo:rustc-cfg=armv8m_main");
     } else if target.starts_with("armv7-") | target.starts_with("armv7a-") {
         println!("cargo:rustc-cfg=armv7a");
+    } else if target.starts_with("msp430-") {
+        println!("cargo:rustc-cfg=msp430");
     }
 
     let is_avr = env::var("CARGO_CFG_TARGET_ARCH").as_deref() == Ok("avr");

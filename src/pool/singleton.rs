@@ -22,6 +22,7 @@ pub mod arc;
     armv7r,
     armv7m,
     armv8m_main,
+    msp430,
     all(
         any(target_arch = "x86_64", target_arch = "x86"),
         feature = "x86-sync-pool"
