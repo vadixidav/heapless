@@ -9,9 +9,7 @@ fn main() -> Result<(), Box<dyn Error>> {
 
     if target.starts_with("thumbv6m-") {
         println!("cargo:rustc-cfg=armv6m");
-    } else if target.starts_with("thumbv7m-") {
-        println!("cargo:rustc-cfg=armv7m");
-    } else if target.starts_with("thumbv7em-") {
+    } else if target.starts_with("thumbv7m-") || target.starts_with("thumbv7em-") {
         println!("cargo:rustc-cfg=armv7m");
     } else if target.starts_with("armv7r-") | target.starts_with("armebv7r-") {
         println!("cargo:rustc-cfg=armv7r");
