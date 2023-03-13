@@ -33,7 +33,6 @@ fn main() -> Result<(), Box<dyn Error>> {
             "avr-unknown-gnu-atmega328"
                 | "bpfeb-unknown-none"
                 | "bpfel-unknown-none"
-                | "msp430-none-elf"
                 // | "riscv32i-unknown-none-elf"    // supported by atomic-polyfill
                 // | "riscv32imc-unknown-none-elf"  // supported by atomic-polyfill
                 | "thumbv4t-none-eabi"
@@ -44,22 +43,13 @@ fn main() -> Result<(), Box<dyn Error>> {
                 println!("cargo:rustc-cfg=has_cas");
             }
         }
-    };
+    }
 
     if is_avr {
         // lacks atomics
     } else {
-        match &target[..] {
-        "msp430-none-elf"
-        // | "riscv32i-unknown-none-elf"    // supported by atomic-polyfill
-        // | "riscv32imc-unknown-none-elf"  // supported by atomic-polyfill
-        => {}
-
-        _ => {
-            println!("cargo:rustc-cfg=has_atomics");
-        }
+        println!("cargo:rustc-cfg=has_atomics");
     }
-    };
 
     // Let the code know if it should use atomic-polyfill or not, and what aspects
     // of polyfill it requires
